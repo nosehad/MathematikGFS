@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3D Geometric Builder</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="app">
+    <aside class="panel">
+      <div class="panel__header">
+        <p class="kicker">GFS Noah Nagel</p>
+        <h1>Kugel Tool</h1>
+        <p>Gib 3D-Punkte ein, um Punkt, Gerade, Kreis und Kugel zu erzeugen.</p>
+        <div class="status-line">
+          <span class="status-label">Status</span>
+          <span id="statusText">Füge einen Punkt hinzu, um zu starten.</span>
+        </div>
+      </div>
+
+      <section class="card">
+        <h2>Punkt hinzufügen</h2>
+        <div class="fields">
+          <label>
+            <span>X</span>
+            <input id="inputX" type="number" step="any" placeholder="0" />
+          </label>
+          <label>
+            <span>Y</span>
+            <input id="inputY" type="number" step="any" placeholder="0" />
+          </label>
+          <label>
+            <span>Z</span>
+            <input id="inputZ" type="number" step="any" placeholder="0" />
+          </label>
+        </div>
+        <button id="addPoint" class="primary">Punkt hinzufügen</button>
+        <div class="controls">
+          <button id="removeLast">Letzten entfernen</button>
+          <button id="clearAll">Alle löschen</button>
+        </div>
+        <div class="quick-actions">
+          <button id="loadSample" class="ghost">Beispiel</button>
+          <button id="randomPoints" class="ghost">Zufällig 4</button>
+          <button id="resetView" class="ghost">Reset</button>
+        </div>
+        <p class="hint">Bis zu vier Punkte. Werte unten ändern, um die Geometrie zu aktualisieren.</p>
+      </section>
+
+      <section class="card">
+        <h2>Punkte</h2>
+        <div id="pointList" class="point-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Kugelgleichung</h2>
+        <div class="equation">
+          <div class="equation__label">standard Koordinatengleichung</div>
+          <pre id="equationStandard">(x<sub>1</sub> - a)<sup>2</sup> + (x<sub>2</sub> - b)<sup>2</sup> + (x<sub>3</sub> - c)<sup>2</sup> = r<sup>2</sup></pre>
+        </div>
+        <div class="equation">
+          <div class="equation__label">ausgeschriebene Form</div>
+          <pre id="equationGeneral">x<sub>1</sub><sup>2</sup> + x<sub>2</sub><sup>2</sup> + x<sub>3</sub><sup>2</sup> + ax<sub>1</sub> + bx<sub>2</sub> + cx<sub>3</sub> + d = 0</pre>
+        </div>
+        <div class="equation-actions">
+          <button id="copyStandard">Standard kopieren</button>
+          <button id="copyGeneral">Ausgeschrieben kopieren</button>
+        </div>
+      </section>
+    </aside>
+
+    <main class="viewer">
+      <canvas id="scene"></canvas>
+      <div class="legend">
+        <div><span class="dot point"></span>Punkt</div>
+        <div><span class="dot line"></span>Gerade</div>
+        <div><span class="dot circle"></span>Kreis</div>
+        <div><span class="dot sphere"></span>Kugel</div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
