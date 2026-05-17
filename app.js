@@ -517,7 +517,7 @@ function loadSamplePoints() {
     { x: 10, y: 9, z: 2 },
     { x: 7, y: 12, z: -6 },
     { x: -4, y: 1, z: 2 }
-  ], "Beispiel-Tetraeder geladen.");
+  ], "Beispiel-Punkte geladen.");
 }
 
 function loadRandomPoints() {
